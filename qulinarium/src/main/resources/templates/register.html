@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Qulinarium</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<main class="main">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" >Qulinarium</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" href="/logout">Wyloguj</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+    <form method="post" th:action="@{registerSucceed}" th:object="${user}">
+
+        <h2 id="reg" class="text-muted">Rejestracja</h2>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" th:field="*{email}">
+
+
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                <p class="bg-danger text-center">Username error!</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Hasło</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" th:field="*{password}">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputName1">Imię i nazwisko</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" th:field="*{name}">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputAddress1">Adres </label>
+            <input type="text" class="form-control" id="exampleInputAddress1" placeholder="Address" th:field="*{address}">
+        </div>
+
+
+        <div class="form-group">
+            <div class="submit">
+            <button type="submit" class="btn btn-primary">Zarejestruj się </button>
+            <span id="gotAccount" class="text-muted">Masz już konto? <a href="/login" th:href="@{/login}">Zaloguj się tutaj</a></span>
+            </div>
+        </div>
+    </form>
+    </div>
+
+
+    <footer class="footer mt-auto py-3 bg-dark">
+
+        <p class="text-muted">Version 1.0</p>
+
+    </footer>
+
+</main>
+</body>
+</html>
+
