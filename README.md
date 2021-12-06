@@ -1,2 +1,2 @@
 # Qulinarium
-First spring-boot application where you can order food.
+Spring-boot with PostgreSQL and Thymeleaf application where you can order food.
